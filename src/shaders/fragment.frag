@@ -12,7 +12,7 @@ void main(){
     vec3 normal = normalize(v_normal);
     vec3 surfaceToLight = normalize(v_surfaceToLight);
 
-    float diffuse = dot(normal, surfaceToLight);
+    float diffuse = clamp(dot(normal, surfaceToLight), 0.01, 1.);
 
     vec3 halfVector = normalize(normalize(v_surfaceToView) + surfaceToLight);
     float specular = dot(normal, halfVector);
