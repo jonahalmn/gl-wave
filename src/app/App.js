@@ -62,7 +62,7 @@ export default class App {
         this.camera = new Camera()
         this.controls = new OrbitControl(this.camera)
         this.light = new Light()
-        this.plane = new Plane(this.gl, this.program, 512)
+        this.plane = new Plane(this.gl, this.program, 256)
         this.objects.push(this.plane)
         this.program.setUniformsFromLiteral(this.camera.uniforms)
         //this.program.setUniformsFromLiteral(this.light.uniforms)
