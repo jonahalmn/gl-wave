@@ -43,7 +43,7 @@ export default class Object3D {
 
     setAttributes() {
         for (const key in this.buffers) {
-            if (this.buffers.hasOwnProperty(key)) {
+            if (this.buffers.hasOwnProperty(key) && this.buffers[key].array.length !== 0) {
                 const element = this.buffers[key]
                 this.gl.bindBuffer(this.gl.ARRAY_BUFFER, element.buffer)
                 this.gl.enableVertexAttribArray(this.program.attribLocs[key])

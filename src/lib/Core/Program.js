@@ -156,21 +156,29 @@ export default class Program {
                         this.gl.bindTexture(bindPoint, texture);
                     });
                 };
-            }(getBindPointForSamplerType(gl, type), units);
+            }(getBindPointForSamplerType(this.gl, type), units);
         }
         if (type === this.gl.SAMPLER_2D || type === this.gl.SAMPLER_CUBE) {
             return function (bindPoint, unit) {
                 return function (texture) {
                     this.gl.uniform1i(location, unit);
-                    this.gl.activeTexture(gl.TEXTURE0 + unit);
+                    this.gl.activeTexture(this.gl.TEXTURE0 + unit);
                     this.gl.bindTexture(bindPoint, texture);
-                };
-            }(getBindPointForSamplerType(gl, type), textureUnit++);
+                }.bind(this);
+            }.bind(this)(getBindPointForSamplerType(this.gl, type), 0);
         }
         throw ("unknown type: 0x" + type.toString(16)); // we should never get here.
     }
 
 
 
+}
 
+function getBindPointForSamplerType(gl, type) {
+    if (type === gl.SAMPLER_2D) {
+        return gl.TEXTURE_2D;
+    }
+    if (type === gl.SAMPLER_CUBE) {
+        return gl.TEXTURE_CUBE_MAP;
+    }
 }
