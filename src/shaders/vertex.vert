@@ -196,12 +196,14 @@ float pnoise(vec3 P, vec3 rep)
 void main(){
     vec4 position = a_position;
     float time = u_time / 200.;
-    position.y = (cnoise(vec3(position.x / 4., position.z / 4., time)))*0.5 + (cnoise(vec3(position.x * 4., position.z * 4.+time, time*12.))*0.02);
+    position.y = ((cnoise(vec3(position.x / 4., position.z / 4., time)))*0.5 + (cnoise(vec3(position.x * 4., position.z * 4.+time, time*12.))*0.02));
 
     vec3 lightDirection = vec3(0, -5, 5);
 
     float dx = .001;
     float dz = .001;
+
+    
 
     float cx = -position.y + cnoise(vec3(position.x / 4.+dx, position.z / 4., time))*.5 +  (cnoise(vec3(position.x * 4.+dx, position.z * 4.+time, time*12.))*0.02);
     float cz = -position.y + cnoise(vec3(position.x / 4., position.z / 4.+dz, time))*.5 +  (cnoise(vec3(position.x * 4., position.z * 4.+dz+time, time*12.))*0.02);

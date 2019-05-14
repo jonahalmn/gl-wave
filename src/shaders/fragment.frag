@@ -18,6 +18,6 @@ void main(){
     float specular = dot(normal, halfVector);
 
     gl_FragColor = (vec4(vec3(diffuse) * u_color.xyz, 1.));
-    gl_FragColor.xyz += pow(specular,300.);
+    gl_FragColor.xyzw += pow(specular,30.);
     vec4 sth = u_color;
 }

@@ -69,13 +69,14 @@ export default class App {
 
         //console.log(this.cube.uniforms)
 
-        this.gl.clearColor(0.1, 0.1, 0.1, 1.0)
+        this.gl.clearColor(135 / 255, 177 / 255, 232 / 255, 1.0)
 
         this.gl.useProgram(this.postprogram.program)
         this.screen = new Screen(this.gl, this.postprogram)
 
         this.gl.enable(this.gl.DEPTH_TEST)
 
+        this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, this.fbo)
 
         this.render()
     }
@@ -94,8 +95,8 @@ export default class App {
             this.gl.FLOAT,
             null
         )
-        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
-        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.NEAREST);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.CLAMP_TO_EDGE);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.CLAMP_TO_EDGE);
 
